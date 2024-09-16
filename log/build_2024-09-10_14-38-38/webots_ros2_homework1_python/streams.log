@@ -1,0 +1,24 @@
+[1.132s] Invoking command in '/home/ggkarabas/Desktop/Robots/f24_robotics/webots_ros2_homework1_python': PYTHONPATH=/home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/webots_ros2_homework1_python build --build-base /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build install --record /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/install.log --single-version-externally-managed install_data
+[1.568s] running egg_info
+[1.569s] writing ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/PKG-INFO
+[1.569s] writing dependency_links to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/dependency_links.txt
+[1.569s] writing entry points to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/entry_points.txt
+[1.569s] writing requirements to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/requires.txt
+[1.570s] writing top-level names to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/top_level.txt
+[1.572s] reading manifest file '../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/SOURCES.txt'
+[1.573s] writing manifest file '../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/SOURCES.txt'
+[1.573s] running build
+[1.573s] running build_py
+[1.573s] copying webots_ros2_homework1_python/webots_ros2_homework1_python.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python
+[1.573s] running install
+[1.574s] running install_lib
+[1.575s] copying /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python/webots_ros2_homework1_python.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python
+[1.576s] byte-compiling /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python/webots_ros2_homework1_python.py to webots_ros2_homework1_python.cpython-310.pyc
+[1.578s] running install_data
+[1.578s] running install_egg_info
+[1.580s] removing '/home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python-0.0.0-py3.10.egg-info' (and everything under it)
+[1.580s] Copying ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info to /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python-0.0.0-py3.10.egg-info
+[1.581s] running install_scripts
+[1.617s] Installing webots_ros2_homework1_python script to /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/webots_ros2_homework1_python
+[1.617s] writing list of installed files to '/home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/install.log'
+[1.656s] Invoked command in '/home/ggkarabas/Desktop/Robots/f24_robotics/webots_ros2_homework1_python' returned '0': PYTHONPATH=/home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/webots_ros2_homework1_python build --build-base /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build install --record /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/install.log --single-version-externally-managed install_data

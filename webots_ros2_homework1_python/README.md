@@ -86,3 +86,5 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ros2 run webots_ros2_homework1_python webots_ros2_homework1_python
 </pre>
 
+
+export WEBOTS_HOME=/usr/local/webots && source /opt/ros/humble/setup.bash && source install/local_setup.bash

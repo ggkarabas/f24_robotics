@@ -1,0 +1,42 @@
+running egg_info
+creating ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info
+writing ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/PKG-INFO
+writing dependency_links to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/dependency_links.txt
+writing entry points to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/entry_points.txt
+writing requirements to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/requires.txt
+writing top-level names to ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/top_level.txt
+writing manifest file '../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/SOURCES.txt'
+reading manifest file '../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/SOURCES.txt'
+writing manifest file '../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python
+copying webots_ros2_homework1_python/__init__.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python
+copying webots_ros2_homework1_python/webots_ros2_homework1_python.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python
+running install
+running install_lib
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python
+copying /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python/__init__.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python
+copying /home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/build/lib/webots_ros2_homework1_python/webots_ros2_homework1_python.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python
+byte-compiling /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python/webots_ros2_homework1_python.py to webots_ros2_homework1_python.cpython-310.pyc
+running install_data
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/ament_index
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/ament_index/resource_index
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/ament_index/resource_index/packages
+copying resource/webots_ros2_homework1_python -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/ament_index/resource_index/packages
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/launch
+copying launch/f23_robotics_1_launch.py -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/launch
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/worlds
+copying worlds/f23_robotics_1.wbt -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/worlds
+copying package.xml -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python
+creating /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/resource
+copying resource/turtlebot_webots.urdf -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/resource
+copying resource/ros2control.yml -> /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/share/webots_ros2_homework1_python/resource
+running install_egg_info
+Copying ../build/webots_ros2_homework1_python/webots_ros2_homework1_python.egg-info to /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/python3.10/site-packages/webots_ros2_homework1_python-0.0.0-py3.10.egg-info
+running install_scripts
+Installing webots_ros2_homework1_python script to /home/ggkarabas/Desktop/Robots/f24_robotics/install/webots_ros2_homework1_python/lib/webots_ros2_homework1_python
+writing list of installed files to '/home/ggkarabas/Desktop/Robots/f24_robotics/build/webots_ros2_homework1_python/install.log'
