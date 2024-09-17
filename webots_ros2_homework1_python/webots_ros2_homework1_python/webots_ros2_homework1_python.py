@@ -6,9 +6,9 @@ from nav_msgs.msg import Odometry
 from rclpy.qos import ReliabilityPolicy, QoSProfile
 import math
 import matplotlib.pyplot as plt
+from PIL import Image
 import signal
 import sys
-
 
 LINEAR_VEL = 0.15
 TURN_VEL = 0.3
@@ -46,9 +46,9 @@ class WallFollower(Node):
         self.cmd = Twist()
         self.timer = self.create_timer(0.1, self.timer_callback)
         
-        # Variables to track position and distance
+        # Correct initial position (2, 6)
+        self.initial_position = (5.2, 6)  
         self.previous_position = None
-        self.initial_position = None  # New: Track initial position
         self.total_distance = 0.0
         self.positions = []  # List to store positions (x, y)
 
@@ -66,13 +66,9 @@ class WallFollower(Node):
     def listener_callback2(self, msg2):
         position = msg2.pose.pose.position
 
-        if self.initial_position is None:
-            # Store the initial position as the starting point
-            self.initial_position = position
-
-        # Normalize the position relative to the starting point
-        normalized_x = position.x - self.initial_position.x
-        normalized_y = position.y - self.initial_position.y
+        # Normalize the position relative to the initial point
+        normalized_x = position.x + self.initial_position[0]
+        normalized_y = position.y + self.initial_position[1]
 
         if self.previous_position is not None:
             # Calculate Euclidean distance between current and previous positions
@@ -140,14 +136,35 @@ class WallFollower(Node):
                 f.write(f"{position[0]},{position[1]}\n")
 
     def plot_path(self):
-        """Plot the robot's path using matplotlib."""
-        x_vals = [pos[0] for pos in self.positions]
-        y_vals = [pos[1] for pos in self.positions]
-        plt.plot(x_vals, y_vals, marker='o')
-        plt.title("Robot Path")
-        plt.xlabel("X Position (meters)")
-        plt.ylabel("Y Position (meters)")
-        plt.grid(True)
+        """Plot the robot's path using matplotlib on top of a background image."""
+        # Load the apartment layout image
+        img = Image.open('/home/ggkarabas/Desktop/Robots/f24_robotics/mnt/data/image/image.jpeg')
+
+        # No rotation; use the recorded positions directly
+        rotated_positions = [(x, y) for x, y in self.positions]
+        
+        # Get image size (in pixels)
+        img_width, img_height = img.size
+
+        # Create figure and axes
+        fig, ax = plt.subplots()
+
+        # Plot the image on the axes (adjust the extents to match your environment scale)
+        ax.imshow(img, extent=[-1, 11.5, -.5, 10])  # Adjust extents based on your room size and robot's path scale
+
+        # Extract x and y values from the recorded positions
+        x_vals = [pos[0] for pos in rotated_positions]
+        y_vals = [pos[1] for pos in rotated_positions]
+
+        # Plot the robot path on top of the image
+        ax.plot(x_vals, y_vals, marker='o', color='blue', linewidth=2)
+
+        # Set labels and title
+        ax.set_title("Robot Path Overlaid on Apartment Layout")
+        ax.set_xlabel("X Position (meters)")
+        ax.set_ylabel("Y Position (meters)")
+
+        # Display the plot
         plt.show()
 
 # Graceful shutdown handler
