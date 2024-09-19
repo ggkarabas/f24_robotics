@@ -47,10 +47,12 @@ class WallFollower(Node):
         self.timer = self.create_timer(0.1, self.timer_callback)
         
         # Correct initial position (2, 6)
-        self.initial_position = (5.2, 6)  
+        self.initial_position = (1.8, 6.3)  
         self.previous_position = None
         self.total_distance = 0.0
         self.positions = []  # List to store positions (x, y)
+        self.max_distance = 0.0  # Track the most distant point in each zone
+        self.most_distant_point = None  # Store coordinates of the most distant point
 
     def listener_callback1(self, msg1):
         scan = msg1.ranges
@@ -79,7 +81,18 @@ class WallFollower(Node):
         
         # Log the current normalized position (x, y) for plotting later
         self.positions.append((normalized_x, normalized_y))
-        
+
+        # Calculate the distance from the starting position to the current position
+        distance_from_start = math.sqrt(
+            (normalized_x - self.initial_position[0]) ** 2 +
+            (normalized_y - self.initial_position[1]) ** 2
+        )
+
+        # Update the most distant point if the current distance is greater
+        if distance_from_start > self.max_distance:
+            self.max_distance = distance_from_start
+            self.most_distant_point = (normalized_x, normalized_y)
+
         # Update previous position
         self.previous_position = (normalized_x, normalized_y)
         
@@ -167,12 +180,22 @@ class WallFollower(Node):
         # Display the plot
         plt.show()
 
+    def print_trial_results(self):
+        """Print the results of the trial, including total distance and most distant point."""
+        self.get_logger().info(f"Trial results:")
+        self.get_logger().info(f"Total distance: {self.total_distance:.2f} meters")
+        if self.most_distant_point:
+            self.get_logger().info(f"Most distant point: {self.most_distant_point} at distance {self.max_distance:.2f} meters")
+        else:
+            self.get_logger().info("No distant point recorded")
+
 # Graceful shutdown handler
 def signal_handler(sig, frame):
     print("Ctrl+C detected! Saving data and exiting...")
     if 'wall_follower_node' in globals():
         wall_follower_node.save_positions_to_file()
         wall_follower_node.plot_path()
+        wall_follower_node.print_trial_results()  # Print trial results at shutdown
         wall_follower_node.destroy_node()
     rclpy.shutdown()
     sys.exit(0)
