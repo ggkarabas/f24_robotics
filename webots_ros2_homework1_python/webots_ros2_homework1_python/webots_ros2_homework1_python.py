@@ -14,15 +14,15 @@ LINEAR_VEL = 0.15
 TURN_VEL = 0.3
 STOP_DISTANCE = 0.5
 LIDAR_ERROR = 0.05
-FOLLOW_DISTANCE = 0.3  # Desired distance from the wall
+FOLLOW_DISTANCE = 0.3  # desired distance from the wall
 LIDAR_AVOID_DISTANCE = 0.7
 SAFE_STOP_DISTANCE = STOP_DISTANCE + LIDAR_ERROR
 RIGHT_SIDE_INDEX = 270
 RIGHT_FRONT_INDEX = 210
 LEFT_FRONT_INDEX = 150
 LEFT_SIDE_INDEX = 90
-DOORWAY_THRESHOLD = 1.5  # Adjust this threshold based on your environment
-TURN_THRESHOLD = 0.5  # Threshold to detect if the robot is stuck against a wall
+DOORWAY_THRESHOLD = 1.5  
+TURN_THRESHOLD = 0.5  # to detect if the robot is stuck against a wall
 
 
 class WallFollower(Node):
