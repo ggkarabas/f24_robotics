@@ -150,34 +150,25 @@ class WallFollower(Node):
 
     def plot_path(self):
         """Plot the robot's path using matplotlib on top of a background image."""
-        # Load the apartment layout image
         img = Image.open('/home/ggkarabas/Desktop/Robots/f24_robotics/mnt/data/image/image.jpeg')
 
-        # No rotation; use the recorded positions directly
         rotated_positions = [(x, y) for x, y in self.positions]
         
-        # Get image size (in pixels)
         img_width, img_height = img.size
 
-        # Create figure and axes
         fig, ax = plt.subplots()
 
-        # Plot the image on the axes (adjust the extents to match your environment scale)
-        ax.imshow(img, extent=[-1, 11.5, -.5, 10])  # Adjust extents based on your room size and robot's path scale
+        ax.imshow(img, extent=[-1, 11.5, -.5, 10])
 
-        # Extract x and y values from the recorded positions
         x_vals = [pos[0] for pos in rotated_positions]
         y_vals = [pos[1] for pos in rotated_positions]
 
-        # Plot the robot path on top of the image
         ax.plot(x_vals, y_vals, marker='o', color='blue', linewidth=2)
 
-        # Set labels and title
         ax.set_title("Robot Path Overlaid on Apartment Layout")
         ax.set_xlabel("X Position (meters)")
         ax.set_ylabel("Y Position (meters)")
 
-        # Display the plot
         plt.show()
 
     def print_trial_results(self):
@@ -189,13 +180,12 @@ class WallFollower(Node):
         else:
             self.get_logger().info("No distant point recorded")
 
-# Graceful shutdown handler
 def signal_handler(sig, frame):
     print("Ctrl+C detected! Saving data and exiting...")
     if 'wall_follower_node' in globals():
         wall_follower_node.save_positions_to_file()
         wall_follower_node.plot_path()
-        wall_follower_node.print_trial_results()  # Print trial results at shutdown
+        wall_follower_node.print_trial_results()  
         wall_follower_node.destroy_node()
     rclpy.shutdown()
     sys.exit(0)
@@ -206,7 +196,6 @@ def main(args=None):
     global wall_follower_node
     wall_follower_node = WallFollower()
     
-    # Register the signal handler to handle Ctrl+C (SIGINT)
     signal.signal(signal.SIGINT, signal_handler)
     
     rclpy.spin(wall_follower_node)
