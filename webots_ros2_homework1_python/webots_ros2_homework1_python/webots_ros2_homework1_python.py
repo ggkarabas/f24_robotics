@@ -68,12 +68,10 @@ class WallFollower(Node):
     def listener_callback2(self, msg2):
         position = msg2.pose.pose.position
 
-        # Normalize the position relative to the initial point
         normalized_x = position.x + self.initial_position[0]
         normalized_y = position.y + self.initial_position[1]
 
         if self.previous_position is not None:
-            # Calculate Euclidean distance between current and previous positions
             dx = normalized_x - self.previous_position[0]
             dy = normalized_y - self.previous_position[1]
             distance = math.sqrt(dx ** 2 + dy ** 2)
@@ -88,7 +86,6 @@ class WallFollower(Node):
             (normalized_y - self.initial_position[1]) ** 2
         )
 
-        # Update the most distant point if the current distance is greater
         if distance_from_start > self.max_distance:
             self.max_distance = distance_from_start
             self.most_distant_point = (normalized_x, normalized_y)
