@@ -24,10 +24,9 @@ LEFT_SIDE_INDEX = 90
 DOORWAY_THRESHOLD = 1.5  
 TURN_THRESHOLD = 0.5  # to detect if the robot is stuck against a wall
 
-
-class WallFollower(Node):
+class RandomWalk(Node):
     def __init__(self):
-        super().__init__("wall_follower_node")
+        super().__init__("random_walk_node")
         self.scan_cleaned = []
         self.turtlebot_moving = False
         self.publisher_ = self.create_publisher(Twist, "cmd_vel", 10)
@@ -46,14 +45,13 @@ class WallFollower(Node):
         self.cmd = Twist()
         self.timer = self.create_timer(0.1, self.timer_callback)
         
-        # Correct initial position (2, 6)
         self.initial_position = (1.8, 6.3)  
         self.previous_position = None
         self.total_distance = 0.0
-        self.positions = []  # List to store positions (x, y)
-        self.max_distance = 0.0  # Track the most distant point in each zone
-        self.most_distant_point = None  # Store coordinates of the most distant point
-
+        self.positions = []  
+        self.max_distance = 0.0  
+        self.most_distant_point = None  
+    
     def listener_callback1(self, msg1):
         scan = msg1.ranges
         self.scan_cleaned = []
@@ -77,10 +75,8 @@ class WallFollower(Node):
             distance = math.sqrt(dx ** 2 + dy ** 2)
             self.total_distance += distance
         
-        # Log the current normalized position (x, y) for plotting later
         self.positions.append((normalized_x, normalized_y))
 
-        # Calculate the distance from the starting position to the current position
         distance_from_start = math.sqrt(
             (normalized_x - self.initial_position[0]) ** 2 +
             (normalized_y - self.initial_position[1]) ** 2
@@ -90,10 +86,8 @@ class WallFollower(Node):
             self.max_distance = distance_from_start
             self.most_distant_point = (normalized_x, normalized_y)
 
-        # Update previous position
         self.previous_position = (normalized_x, normalized_y)
         
-        # Log total distance covered
         self.get_logger().info(f"Total distance covered: {self.total_distance:.2f} meters")
 
     def timer_callback(self):
@@ -105,7 +99,6 @@ class WallFollower(Node):
         right_lidar_min = min(self.scan_cleaned[RIGHT_FRONT_INDEX:RIGHT_SIDE_INDEX])
         front_lidar_min = min(self.scan_cleaned[LEFT_FRONT_INDEX:RIGHT_FRONT_INDEX])
 
-        # Check if the robot is too close to the front wall and needs to turn
         if front_lidar_min < SAFE_STOP_DISTANCE:
             self.cmd.linear.x = 0.0
             self.cmd.angular.z = TURN_VEL
@@ -125,13 +118,13 @@ class WallFollower(Node):
             self.cmd.angular.z = 0.0
             if right_lidar_min < .2:
                 self.cmd.linear.x = LINEAR_VEL / 2
-                self.cmd.angular.z = 0.2  # Turn left slightly to maintain distance
+                self.cmd.angular.z = 0.2  
             elif right_lidar_min > 1.0:
                 self.cmd.linear.x = LINEAR_VEL / 2
-                self.cmd.angular.z = -0.2  # Turn right slightly to maintain distance
+                self.cmd.angular.z = -0.2 
             elif right_lidar_min > 0.5:
                 self.cmd.linear.x = LINEAR_VEL / 2
-                self.cmd.angular.z = -0.1  # Turn right slightly to maintain distance
+                self.cmd.angular.z = -0.1
             self.publisher_.publish(self.cmd)
             self.turtlebot_moving = True
 
@@ -140,13 +133,11 @@ class WallFollower(Node):
         self.get_logger().info('Publishing command: "%s"' % self.cmd)
         
     def save_positions_to_file(self, filename="robot_path.csv"):
-        """Save the robot's path to a CSV file for later plotting."""
         with open(filename, "w") as f:
             for position in self.positions:
                 f.write(f"{position[0]},{position[1]}\n")
 
     def plot_path(self):
-        """Plot the robot's path using matplotlib on top of a background image."""
         img = Image.open('/home/ggkarabas/Desktop/Robots/f24_robotics/mnt/data/image/image.jpeg')
 
         rotated_positions = [(x, y) for x, y in self.positions]
@@ -162,36 +153,28 @@ class WallFollower(Node):
 
         ax.plot(x_vals, y_vals, marker='o', color='blue', linewidth=2)
 
-        ax.set_title("Robot Path Overlaid on Apartment Layout")
-        ax.set_xlabel("X Position (meters)")
-        ax.set_ylabel("Y Position (meters)")
-
         plt.show()
 
     def print_trial_results(self):
-        """Print the results of the trial, including total distance and most distant point."""
         self.get_logger().info(f"Trial results:")
         self.get_logger().info(f"Total distance: {self.total_distance:.2f} meters")
         if self.most_distant_point:
             self.get_logger().info(f"Most distant point: {self.most_distant_point} at distance {self.max_distance:.2f} meters")
-        else:
-            self.get_logger().info("No distant point recorded")
 
 def signal_handler(sig, frame):
-    print("Ctrl+C detected! Saving data and exiting...")
-    if 'wall_follower_node' in globals():
-        wall_follower_node.save_positions_to_file()
-        wall_follower_node.plot_path()
-        wall_follower_node.print_trial_results()  
-        wall_follower_node.destroy_node()
+    if 'random_walk_node_node' in globals():
+        random_walk_node.save_positions_to_file()
+        random_walk_node.plot_path()
+        random_walk_node.print_trial_results()  
+        random_walk_node.destroy_node()
     rclpy.shutdown()
     sys.exit(0)
 
 def main(args=None):
     rclpy.init(args=args)
     
-    global wall_follower_node
-    wall_follower_node = WallFollower()
+    global random_walk_node
+    random_walk_node = RandomWalk()
     
     signal.signal(signal.SIGINT, signal_handler)
     
